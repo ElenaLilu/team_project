@@ -207,11 +207,11 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void TestYearChangeEqualsRate() {
+    public void TestYearChangeZeroInitialBalance() {
 
         SavingAccount account = new SavingAccount(
                 0,
-                0,
+                2_000,
                 10_000,
                 5
         );
@@ -221,5 +221,19 @@ public class SavingAccountTest {
         Assertions.assertEquals(0, account.yearChange());
     }
 
+    @Test
+    public void TestYearChangeZeroMinBalance() {
+
+        SavingAccount account = new SavingAccount(
+                5_000,
+                0,
+                10_000,
+                5
+        );
+
+        account.yearChange();
+
+        Assertions.assertEquals(250, account.yearChange());
+    }
 
 }
