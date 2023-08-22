@@ -25,9 +25,9 @@ public class CreditAccountTest {
     // Pay
     @Test void testPositiveAmountPay() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
-        boolean payResult = account.pay(500);
+        boolean payResult = account.pay(300);
         Assertions.assertTrue(payResult);
-        Assertions.assertEquals(500, account.getBalance());
+        Assertions.assertEquals(700, account.getBalance());
     }
     @Test void testNegativeAmountPay() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
@@ -37,7 +37,7 @@ public class CreditAccountTest {
     }
     @Test void testOutOfLimitPay() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
-        boolean payResult1 = account.pay(3500);
+        boolean payResult1 = account.pay(4500);
         Assertions.assertFalse(payResult1);
         Assertions.assertEquals(1000, account.getBalance());
     }
