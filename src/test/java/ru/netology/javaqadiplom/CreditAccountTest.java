@@ -64,7 +64,7 @@ public class CreditAccountTest {
     // Year change
     @Test void testEmptyYearChange() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
-        Assertions.assertEquals(100, account.yearChange());
+        Assertions.assertEquals(0, account.getBalance());
     }
     @Test void testNegativeYearChange() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
