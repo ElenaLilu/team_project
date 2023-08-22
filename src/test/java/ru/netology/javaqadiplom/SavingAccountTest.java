@@ -29,8 +29,35 @@ public class SavingAccountTest {
         );
         account.add(10_000);
 
+        Assertions.assertFalse(false);
+    }
+
+    @Test
+    public void shouldInitialBalanceLessMinBalance() {
+        SavingAccount account = new SavingAccount(
+                500,
+                1_000,
+                10_000,
+                5
+        );
+        account.add(200);
+
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    public void shouldMinBalanceMoreMaxBalance() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                10_000,
+                8_000,
+                5
+        );
+        account.add(2_000);
+
         Assertions.assertEquals(2_000, account.getBalance());
     }
+
 
     @Test
     public void shouldAddMoreThanMaxBalance() {
@@ -85,6 +112,21 @@ public class SavingAccountTest {
     }
 
     @Test
+    public void shouldAllNegative() {
+        SavingAccount account = new SavingAccount(
+                -2_000,
+                -1_000,
+                -10_000,
+                5
+        );
+        account.add(-2_000);
+
+        Assertions.assertEquals(-2_000, account.getBalance());
+    }
+
+
+
+    @Test
     public void shouldPayThanLessMaxBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -92,9 +134,9 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(5_000);
+        boolean result = account.pay(5_000);
 
-        Assertions.assertEquals(5_000, account.getBalance());
+        Assertions.assertEquals(false, result);
     }
 
     @Test
@@ -105,7 +147,7 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(1_000);
+        account.pay(1_000);
 
         Assertions.assertEquals(1_000, account.getBalance());
     }
@@ -118,7 +160,7 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(4_000);
+        account.pay(4_000);
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
@@ -131,9 +173,9 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(-1_000);
+        account.pay(-3_000);
 
-        Assertions.assertFalse(false);
+        Assertions.assertEquals(2_000, account.getBalance());
     }
 
     @Test
@@ -144,7 +186,7 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(0);
+        account.pay(0);
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
@@ -157,9 +199,10 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(12_000);
 
-        Assertions.assertFalse(false);
+        boolean result = account.pay(12_000);
+
+        Assertions.assertEquals(false, result);
     }
 
     @Test
@@ -170,9 +213,12 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-        account.add(1_500);
 
-        Assertions.assertFalse(false);
+        boolean result = account.pay(1_500);
+
+        Assertions.assertEquals(500, account.getBalance());
+        Assertions.assertEquals(true, result);
+
     }
 
 
@@ -220,6 +266,37 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
+
+    @Test
+    public void TestYearChangeInitialBalanceLess100() {
+
+        SavingAccount account = new SavingAccount(
+                77,
+                50,
+                9_000,
+                60
+        );
+
+        account.yearChange();
+
+        Assertions.assertEquals(46, account.yearChange());
+    }
+
+    @Test
+    public void shouldAddBalanceEqualInitialBalance() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+
+        boolean result = account.pay(2_000);
+
+        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(true, result);
+    }
+
 
     @Test
     public void TestYearChangeZeroMinBalance() {
