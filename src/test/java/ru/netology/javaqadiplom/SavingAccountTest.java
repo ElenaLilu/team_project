@@ -113,6 +113,19 @@ public class SavingAccountTest {
     }
 
     @Test
+    public void shouldRateEqualsZero() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                0
+        );
+        account.add(1_500);
+
+        Assertions.assertEquals(1_500, account.getBalance());
+    }
+
+    @Test
     public void shouldAddNegative() {
         SavingAccount account = new SavingAccount(
                 2_000,
