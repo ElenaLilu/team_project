@@ -11,6 +11,7 @@ public class CreditAccountTest {
             new CreditAccount(1000, 2000, -10);
         });
     }
+
     @Test void testIncorrectInitialBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new CreditAccount(-1000, 2000, 10);
