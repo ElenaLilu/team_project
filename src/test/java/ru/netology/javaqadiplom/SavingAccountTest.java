@@ -20,6 +20,20 @@ public class SavingAccountTest {
     }
 
     @Test
+    public void shouldMinBalanceMoreThanMaxBalance() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                10_000,
+                8_000,
+                5
+        );
+
+        account.add(1);
+
+        Assertions.assertEquals(2_001, account.getBalance());
+    }
+
+    @Test
     public void shouldAddEqualsMaxBalance() {
         SavingAccount account = new SavingAccount(
                  2_000,
