@@ -310,7 +310,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldAddBalanceEqualInitialBalance() {
+    public void shouldPayBalanceEqualInitialBalance() {
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -320,8 +320,7 @@ public class SavingAccountTest {
 
         boolean result = account.pay(2_000);
 
-        Assertions.assertEquals(0, account.getBalance());
-        Assertions.assertEquals(true, result);
+        Assertions.assertEquals(false, result);
     }
 
 
