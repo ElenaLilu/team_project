@@ -65,7 +65,7 @@ public class CreditAccountTest {
     // Year change
     @Test void testEmptyYearChange() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(0, account.yearChange());
     }
     @Test void testNegativeYearChange() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
@@ -77,12 +77,6 @@ public class CreditAccountTest {
     @Test void testEmptyBalanceYearChange() {
         CreditAccount account = new CreditAccount(0, 2000, 10);
         Assertions.assertEquals(0, account.yearChange());
-    }
-
-    @Test void justForFun() {
-        // TODO: удалить этот тест, изначальный баланс не может быть отрицательным, я видела
-        CreditAccount account = new CreditAccount(-1000, 2000, 10);
-        Assertions.assertEquals(-100, account.yearChange());
     }
 
 }
